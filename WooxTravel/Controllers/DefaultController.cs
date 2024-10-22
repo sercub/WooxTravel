@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WooxTravel.Context;
+using WooxTravel.Entities;
 
 namespace WooxTravel.Controllers
 {
@@ -32,7 +33,8 @@ namespace WooxTravel.Controllers
         }
         public PartialViewResult PartialCountry()
         {
-            return PartialView();
+            var values = context.Destinations.ToList();
+            return PartialView(values);
         }
         public PartialViewResult PartialFooter()
         {
