@@ -37,5 +37,27 @@ namespace WooxTravel.Areas.Admin.Controllers
             context.SaveChanges();
             return RedirectToAction("DestinationList", "Destination", "Admin");
         }
+
+        [HttpGet]
+        public ActionResult UpdateDestination(int id)
+        {
+            var value = context.Destinations.Find(id);
+            return View(value);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateDestination(Destination destination)
+        {
+            var value = context.Destinations.Find(destination.DestinationId);
+            value.Description = destination.Description;
+            value.City = destination.City;
+            value.Country = destination.Country;
+            value.DayNight = destination.DayNight;
+            value.ImageUrl = destination.ImageUrl;
+            value.Price = destination.Price;
+            value.Title = destination.Title;
+            context.SaveChanges();
+            return RedirectToAction("DestinationList", "Destination", "Admin");
+        }
     }
 }
