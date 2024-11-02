@@ -1,0 +1,192 @@
+﻿@model WooxTravel.Entities.Destination
+@{
+    ViewBag.Title = "DestinationDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="about-main-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="content">
+                    <div class="blur-bg" style="background-image: url('@Model.ImageUrl');"></div>
+                    <h4>Benzersiz Anılar Biriktirmek İçin Yola Çıkın</h4>
+                    <div class="line-dec"></div>
+                    <h2>@Model.Title</h2>
+                    @*<p>@Model.Description</p>*@
+                    <div class="main-button">
+                        <a href="reservation.html">Daha Fazlasını Keşfet</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="more-about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 align-self-center">
+                <div class="left-image image">
+                    <img src="@Model.ImageUrl" alt="">
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="section-heading">
+                    <h2>@Model.Title</h2>
+                    <p>@Model.Description</p>
+                </div>
+                <div class="info-section d-flex justify-content-around mt-4">
+                    <div class="info-item text-center p-3 border rounded">
+                        <h4>@Model.DayNight Gün - @(Model.DayNight-1) Gece</h4>
+                        <span>Tur Süresi</span>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="info-item text-center p-3 border rounded">
+                            <h4>@Model.Price ₺</h4>
+                            <span>Tur Ücreti</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="info-item text-center p-3 border rounded">
+                            <h4>@Model.Capacity Kişi</h4>
+                            <span>Tur Kapasitesi</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="cities-town">
+    <div class="container">
+        <div class="row">
+            <div class="slider-content">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2>@Model.City <em>Keşif Rotaları</em></h2>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="owl-cites-town owl-carousel">
+                            @foreach (var item in ViewBag.SliderImages)
+                            {
+                                <div class="item">
+                                    <div class="thumb">
+                                        <img src="@item.ImageUrl" alt="">
+                                        <h4>@item.Title</h4>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+  .about-main-content {
+    position: relative;
+    padding: 100px 0;
+    color: white;
+    background: url("@Model.ImageUrl") no-repeat center center;
+    background-size: cover;
+}
+
+.about-main-content:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4); 
+    filter: blur(8px) brightness(80%); 
+    z-index: 1;
+}
+
+.content {
+    position: relative;
+    z-index: 2;
+    color: white;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.6); 
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.line-dec {
+    height: 2px;
+    width: 50px;
+    background: white;
+    margin: 15px auto;
+}
+
+.image-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.image img {
+    border-radius: 15px;
+    border: 5px solid black;
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+}
+
+.info-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.info-item {
+    flex: 1;
+    background-color: #f8f9fa;
+    color: #333;
+    font-weight: bold;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    padding: 15px;
+}
+
+.info-item h4 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.info-item span {
+    font-size: 0.9rem;
+    color: #777;
+}
+    .owl-cites-town .item .thumb img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 20%;
+        border: 3px solid black;
+    }
+
+.owl-cites-town .item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 10px;
+}
+
+.owl-cites-town .item h4 {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #333;
+}
+
+</style>
+

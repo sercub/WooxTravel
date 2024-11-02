@@ -1,4 +1,8 @@
-﻿@model List<WooxTravel.Entities.Destination>
+﻿@using PagedList;
+@using PagedList.Mvc;
+@using WooxTravel.Entities
+@model PagedList.IPagedList<Destination>
+
 <div class="visit-country">
     <div class="container">
         <div class="row">
@@ -28,7 +32,7 @@
                                                 <h4>@item.Country</h4>
                                                 <span>@item.City</span>
                                                 <div class="main-button">
-                                                    <a href="about.html">Tur Detaylarını Gör</a>
+                                                    <a href="/Default/DestinationDetail/@item.DestinationId/">Tur Detaylarını Gör</a>
                                                 </div>
                                                 <p>@item.Description</p>
                                                 <ul class="info">
@@ -37,7 +41,7 @@
                                                     <li><i class="fa fa-home"></i> @item.Capacity Kişi</li>
                                                 </ul>
                                                 <div class="text-button">
-                                                    <a href="about.html">Rehberi Görün <i class="fa fa-arrow-right"></i></a>
+                                                    <a href="@Url.Action("DestinationDetail", "Destination", new {id=item.DestinationId})">Devamını Oku<i class="fa fa-arrow-right"></i></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -51,3 +55,45 @@
         </div>
     </div>
 </div>
+<div class="pagination-container">
+    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
+{
+    LiElementClasses = new List<string> { "page-link" }
+})
+</div>
+<style>
+    .pagination-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .pagination .page-item {
+        margin: 0 5px;
+    }
+
+        .pagination .page-item a {
+            color: #007bff;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+        .pagination .page-item.active a {
+            background-color: #007bff;
+            color: #fff;
+            border-color: #007bff;
+        }
+
+        .pagination .page-item a:hover {
+            background-color: #f0f0f0;
+            color: #007bff;
+        }
+        .image img{
+            width:100%;
+            height:250px;
+            object-fit:cover;
+            border-radius:8px;
+        }
+</style>
