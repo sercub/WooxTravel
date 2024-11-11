@@ -15,7 +15,8 @@ namespace WooxTravel.Areas.Admin.Controllers
         {
             var a = Session["userInfo"]; //giriş yapan kişinin kullanıcı adı
             var email = context.Admins.Where(s=>s.Username==a).Select(s=>s.Email).FirstOrDefault(); //bu kullanıcının emaili
-            var values = context.Messages.Where(s=>s.ReceiverMail==email).ToList(); //bu emaile ait gelen kutusu
+            var values = context.Messages.Where(s => s.ReceiverMail == email).ToList(); //bu emaile ait gelen kutusu
+            //var values = context.Messages.Where(s => s.ReceiverMail == email).OrderByDescending(s => s.SendDate).Take(5).ToList();
             return View(values);
         }
         public ActionResult SendBox()
@@ -35,7 +36,7 @@ namespace WooxTravel.Areas.Admin.Controllers
         {
             var a = Session["userInfo"]; 
             var email = context.Admins.Where(s => s.Username == a).Select(s => s.Email).FirstOrDefault();
-            message.SenderMail = email;
+            message.SenderMail = email; //mesajın göndericisi login olan kullanıcı olur.
             message.SendDate = DateTime.Now;
             message.IsRead = false;
             context.Messages.Add(message);
