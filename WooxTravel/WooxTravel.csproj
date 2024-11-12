@@ -699,6 +699,8 @@
     <Content Include="Areas\Admin\Views\Message\Inbox.cshtml" />
     <Content Include="Areas\Admin\Views\Message\SendBox.cshtml" />
     <Content Include="Areas\Admin\Views\Message\SendMessage.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminLayout\NavbarNotificationsForDestination.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminLayout\NavbarMessages.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

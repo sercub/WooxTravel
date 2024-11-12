@@ -1,0 +1,44 @@
+﻿@model List<WooxTravel.Entities.Destination>
+<li class="nav-item topbar-icon dropdown hidden-caret">
+    <a class="nav-link dropdown-toggle"
+       href="#"
+       id="notifDropdown"
+       role="button"
+       data-bs-toggle="dropdown"
+       aria-haspopup="true"
+       aria-expanded="false">
+        <i class="fa fa-bell"></i>
+        <span class="notification">4</span>
+    </a>
+    <ul class="dropdown-menu notif-box animated fadeIn"
+        aria-labelledby="notifDropdown">
+        <li>
+            <div class="dropdown-title">
+                Eklenen Tur Rotaları
+            </div>
+        </li>
+        <li>
+            <div class="notif-scroll scrollbar-outer">
+                <div class="notif-center">
+                    @foreach (var item in Model)
+                    {
+                        <a href="#">
+                            <div class="notif-icon notif-primary">
+                                <img src="@item.ImageUrl" alt="@item.Title" style="width:50px; height:50px; border-radius: 5px;"/>
+                            </div>
+                            <div class="notif-content">
+                                <span class="block"> @item.Title </span>
+                                <span class="time">@item.Country</span>
+                            </div>
+                        </a>
+                    }
+                </div>
+            </div>
+        </li>
+        <li>
+            <a class="see-all" href="/Default/Index/">
+                Tüm Rotaları Gör<i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+    </ul>
+</li>

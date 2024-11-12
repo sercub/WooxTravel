@@ -1,0 +1,51 @@
+﻿@model List<WooxTravel.Entities.Message>
+<li class="nav-item topbar-icon dropdown hidden-caret">
+    <a class="nav-link dropdown-toggle"
+       href="#"
+       id="messageDropdown"
+       role="button"
+       data-bs-toggle="dropdown"
+       aria-haspopup="true"
+       aria-expanded="false">
+        <i class="fa fa-envelope"></i>
+        <span class="notification">@ViewBag.MessageCount</span>
+    </a>
+    <ul class="dropdown-menu messages-notif-box animated fadeIn"
+        aria-labelledby="messageDropdown">
+        <li>
+            <div class="dropdown-title d-flex justify-content-between align-items-center">
+                Messages
+                <a href="#" class="small">Tümünü Oku</a>
+            </div>
+        </li>
+        <li>
+
+            @if (Model != null && Model.Any())
+            {
+                <div class="message-notif-scroll scrollbar-outer">
+                    <div class="notif-center">
+                        @foreach (var message in Model)
+                        {
+                            <a href="#">
+                                <div class="notif-content">
+                                    <span class="subject">@message.SenderMail</span>
+                                    <span class="block">@message.Subject</span>
+                                </div>
+                            </a>
+                        }
+                    </div>
+                </div>
+            }
+            else
+            {
+                <p>Yeni Mesaj Yok</p>
+            }
+
+        </li>
+        <li>
+            <a class="see-all" href="/Admin/Message/Inbox/">
+                Tüm mesajları gör<i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+    </ul>
+</li>

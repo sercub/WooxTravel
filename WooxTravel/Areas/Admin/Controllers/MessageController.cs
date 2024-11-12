@@ -15,8 +15,7 @@ namespace WooxTravel.Areas.Admin.Controllers
         {
             var a = Session["userInfo"]; //giriş yapan kişinin kullanıcı adı
             var email = context.Admins.Where(s=>s.Username==a).Select(s=>s.Email).FirstOrDefault(); //bu kullanıcının emaili
-            var values = context.Messages.Where(s => s.ReceiverMail == email).ToList(); //bu emaile ait gelen kutusu
-            //var values = context.Messages.Where(s => s.ReceiverMail == email).OrderByDescending(s => s.SendDate).Take(5).ToList();
+            var values = context.Messages.Where(s => s.ReceiverMail == email).ToList(); //bu emaile ait gelen kutusu 
             return View(values);
         }
         public ActionResult SendBox()
