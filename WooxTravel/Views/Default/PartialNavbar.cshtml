@@ -1,4 +1,6 @@
-﻿<div id="js-preloader" class="js-preloader">
+﻿@model WooxTravel.Entities.Reservation
+
+<div id="js-preloader" class="js-preloader">
     <div class="preloader-inner">
         <span class="dot"></span>
         <div class="dots">
@@ -23,9 +25,10 @@
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                         <li><a href="/Default/Index/" class="active">Ana Sayfa</a></li>
-                        <li><a href="about.html">Hakkımızda</a></li>
+                        @*<li><a href="about.html">Hakkımızda</a></li>*@
                         <li><a href="deals.html">Rotalar</a></li>
-                        <li><a href="reservation.html">Rezervasyon</a></li>
+                        <li><a href="#" data-bs-toggle="modal" data-bs-target="#reservationModal">Rezervasyon Oluştur</a></li>
+                        @*<li><a href="reservation.html">Rezervasyon</a></li>*@
                         <li><a href="reservation.html">Kayıt Ol</a></li>
                     </ul>
                     <a class='menu-trigger'>
@@ -37,3 +40,52 @@
         </div>
     </div>
 </header>
+<div class="modal fade" id="reservationModal" tabindex="-1" aria-labelledby="reservationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reservationModalLabel">Rezervasyon Formu</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+            </div>
+            <form method="post" action="/Default/CreateReservation/">
+                <div class="modal-body">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" style="color: black">Adınız</label>
+                                        <input type="text" class="form-control" name="Name" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" style="color: black">Telefon Numaranız</label>
+                                        <input type="text" class="form-control" name="Phone" id="phoneInput" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" style="color: black">Kişi Sayısı</label>
+                                        <input type="number" class="form-control" name="PersonCount" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" style="color: black">Tarih</label>
+                                        <input type="date" class="form-control" name="ReservationDate" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" style="color: black">Açıklama</label>
+                                <textarea class="form-control" name="Description" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="modal-footer">
+                            <button id="reservationCreate" type="submit" class="btn btn-primary" style="background-color: #22b3c1; color: white; border: none; font-weight: bold ">Rezervasyon Oluştur</button>
+                        </div>
+                    </form>
+                </div>
+    </div>
+</div>

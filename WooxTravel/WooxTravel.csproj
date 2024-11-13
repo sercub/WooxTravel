@@ -136,6 +136,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminLayoutController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ChartController.cs" />
     <Compile Include="Areas\Admin\Controllers\DestinationController.cs" />
     <Compile Include="Areas\Admin\Controllers\MessageController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProfileController.cs" />
@@ -701,6 +702,7 @@
     <Content Include="Areas\Admin\Views\Message\SendMessage.cshtml" />
     <Content Include="Areas\Admin\Views\AdminLayout\NavbarNotificationsForDestination.cshtml" />
     <Content Include="Areas\Admin\Views\AdminLayout\NavbarMessages.cshtml" />
+    <Content Include="Areas\Admin\Views\Chart\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

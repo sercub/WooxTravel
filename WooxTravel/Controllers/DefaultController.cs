@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using WooxTravel.Context;
 using PagedList;
+using WooxTravel.Entities;
 
 namespace WooxTravel.Controllers
 {
@@ -82,6 +83,25 @@ namespace WooxTravel.Controllers
             }
 
             return View(value);
+        }
+
+        [HttpGet]
+        public ActionResult CreateReservation()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateReservation(Reservation reservation)
+        {
+            if(ModelState.IsValid)
+            {
+                reservation.ReservationDate = DateTime.Now;
+                context.Reservations.Add(reservation);
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View("Index");
         }
         public PartialViewResult PartialFooter()
         {
