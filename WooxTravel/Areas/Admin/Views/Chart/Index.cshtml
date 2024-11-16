@@ -1,226 +1,239 @@
 ﻿@model List<WooxTravel.Entities.Destination>
 @{
-    ViewBag.Title = "Index";
+    //ViewBag.Title = "Grafiklerimiz";
     Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
-
-    var capacityValue = Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Capacity);
-    var priceValue = Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Price);
-    var dayNightValue = Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.DayNight);
 }
 
-<div class="container">
-    <div class="page-inner">
-        <h3 class="fw-bold mb-3">Grafiklerimiz</h3>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-title">Bar Chart (Kapsite)</div>
-                    </div>
-                    <div class="card-body">
-                        <div class="chart-container">
-                            <canvas id="barChartCapacity"></canvas>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    @*<title>Charts - Kaiadmin Bootstrap 5 Admin Dashboard</title>*@
+    <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
+    <link rel="icon" href="/kaiadmin-lite-1.2.0/assets/img/kaiadmin/favicon.ico" type="image/x-icon" />
+    <script src="/kaiadmin-lite-1.2.0/assets/js/plugin/webfont/webfont.min.js"></script>
+    <script>
+        WebFont.load({
+            google: { families: ["Public Sans:300,400,500,600,700"] },
+            custom: {
+                families: [
+                    "Font Awesome 5 Solid",
+                    "Font Awesome 5 Regular",
+                    "Font Awesome 5 Brands",
+                    "simple-line-icons",
+                ],
+                urls: ["/kaiadmin-lite-1.2.0/assets/css/fonts.min.css"],
+            },
+            active: function () {
+                sessionStorage.fonts = true;
+            },
+        });
+    </script>
+    <link rel="stylesheet" href="/kaiadmin-lite-1.2.0/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/kaiadmin-lite-1.2.0/assets/css/plugins.min.css" />
+    <link rel="stylesheet" href="/kaiadmin-lite-1.2.0/assets/css/kaiadmin.min.css" />
+    <style>
+        .custom-chart-customer{
+            width:100px;
+            height:100px;
+            margin:auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Core JS Files -->
+    <script src="/kaiadmin-lite-1.2.0/assets/js/core/jquery-3.7.1.min.js"></script>
+    <script src="/kaiadmin-lite-1.2.0/assets/js/core/popper.min.js"></script>
+    <script src="/kaiadmin-lite-1.2.0/assets/js/core/bootstrap.min.js"></script>
+    <!-- Chart JS -->
+    <script src="/kaiadmin-lite-1.2.0/assets/js/plugin/chart.js/chart.min.js"></script>
+    <!-- jQuery Scrollbar -->
+    <script src="/kaiadmin-lite-1.2.0/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+    <!-- Kaiadmin JS -->
+    <script src="/kaiadmin-lite-1.2.0/assets/js/kaiadmin.min.js"></script>
+
+    <div class="container">
+        <div class="page-inner">
+            <div class="row">
+                <div class="col-md-6" style="margin-bottom:10px;">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Doughnut Chart</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="custom-chart-container">
+                                <canvas id="doughnutChart"></canvas>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-title">Line Chart (Fiyatlar)</div>
-                    </div>
-                    <div class="card-body">
-                        <div class="chart-container">
-                            <canvas id="lineChartPrice"></canvas>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Radar Chart</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="custom-chart-container">
+                                <canvas id="radarChart"></canvas>
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-title">Doughnut Chart (Gün)</div>
-                    </div>
-                    <div class="card-body">
-                        <div class="chart-container">
-                            <canvas id="doughnutChartDayNight"></canvas>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Line Chart</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="custom-chart-container">
+                                <canvas id="lineChart"></canvas>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-title">Pie Chart (Fiyatlar)</div>
-                    </div>
-                    <div class="card-body">
-                        <div class="chart-container">
-                            <canvas id="pieChartPrice"></canvas>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Pie Chart</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="custom-chart-container">
+                                <canvas id="pieChart"></canvas>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<script src="/kaiadmin-lite-1.2.0/assets/js/plugin/chart.js/chart.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-3d/dist/chartjs-plugin-3d.min.js"></script>
 
-<script>
-    var barChartCapacity = document.getElementById("barChartCapacity").getContext("2d"),
-        lineChartPrice = document.getElementById("lineChartPrice").getContext("2d"),
-        doughnutChartDayNight = document.getElementById("doughnutChartDayNight").getContext("2d"),
-        pieChartPrice = document.getElementById("pieChartPrice").getContext("2d");
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-3d/dist/chartjs-plugin-3d.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        $.ajax({
+            url: '@Url.Action("ChartData", "Chart")',
+            type: 'GET',
+            success: function (data) {
+                var labels = data.map(function (item) {
+                    return item.City;
+                });
+                var capacities = data.map(function (item) {
+                    return item.Capacity;
+                });
 
-    var capacityValue = @Html.Raw(capacityValue);
-    var priceValue = @Html.Raw(priceValue);
-    var dayNightValue = @Html.Raw(dayNightValue);
+                var ctx = document.getElementById('doughnutChart').getContext('2d');
+                var doughnutChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            data: capacities,
+                            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'],
+                            borderColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'],
+                            borderWidth: 1
+                        }]
+                    }
+                });
+            },
+            error: function (error) {
+                console.log("Veri yüklenemedi", error);
+            }
+        });
 
-    // 3D Bar Chart for Capacity
-    var myBarChartCapacity = new Chart(barChartCapacity, {
-        type: "bar",
-        data: {
-            labels: ["İlk Tur", "İkinci Tur", "Üçüncü Tur"],
-            datasets: [{
-                label: "Toplam Kapasite",
-                backgroundColor: "#1d7af3",
-                borderColor: "#1d7af3",
-                data: capacityValue
-            }],
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true,
+        $.ajax({
+            url: '@Url.Action("RadarChartData", "Chart")',
+            type: 'GET',
+            success: function (data) {
+                var radarLabels = data.labels;
+                var radarData = data.data;
+
+                var ctx = document.getElementById('radarChart').getContext('2d');
+                var radarChart = new Chart(ctx, {
+                    type: 'radar',
+                    data: {
+                        labels: radarLabels,
+                        datasets: [{
+                            label: 'Şehir Kapasiteleri',
+                            data: radarData,
+                            backgroundColor: 'rgba(186, 208, 18, 0.2)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        }]
+                    }
+                });
+            },
+            error: function (error) {
+                console.log("Veri yüklenemedi", error);
+            }
+        });
+
+        $.ajax({
+            url: '@Url.Action("LineChartData", "Chart")',
+            type: 'GET',
+            success: function (data) {
+                var lineLabels = data.labels;
+                var lineData = data.data;
+
+                var ctx = document.getElementById('lineChart').getContext('2d');
+                var lineChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: lineLabels,
+                        datasets: [{
+                            label: 'Şehir Kapasiteleri',
+                            data: lineData,
+                            fill: false,
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 2
+                        }]
                     },
-                }],
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
             },
-            plugins: {
-                '3d': {
-                    enabled: true,
-                    z: 0.1
-                }
+            error: function (error) {
+                console.log("Veri yüklenemedi", error);
             }
-        },
-    });
+        });
 
-    // 3D Line Chart for Prices
-    var myLineChartPrice = new Chart(lineChartPrice, {
-        type: "line",
-        data: {
-            labels: ["İlk Tur", "İkinci Tur", "Üçüncü Tur"],
-            datasets: [{
-                label: "Fiyatlar",
-                borderColor: "#f3545d",
-                pointBorderColor: "#FFF",
-                pointBackgroundColor: "#f3545d",
-                pointRadius: 4,
-                backgroundColor: "transparent",
-                fill: true,
-                borderWidth: 2,
-                data: priceValue
-            }],
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            legend: {
-                position: "bottom",
-                labels: {
-                    padding: 10,
-                    fontColor: "#f3545d",
-                },
+        $.ajax({
+            url: '@Url.Action("PieChartData", "Chart")',
+            type: 'GET',
+            success: function (data) {
+                var labels = data.map(function (item) {
+                    return item.City;
+                });
+                var counts = data.map(function (item) {
+                    return item.Price;
+                });
+
+                var ctx = document.getElementById('pieChart').getContext('2d');
+                var pieChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            data: counts,
+                            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0']
+                        }]
+                    }
+                });
             },
-            tooltips: {
-                bodySpacing: 4,
-                mode: "nearest",
-                intersect: 0,
-                position: "nearest",
-                xPadding: 10,
-                yPadding: 10,
-                caretPadding: 10,
-            },
-            layout: {
-                padding: { left: 15, right: 15, top: 15, bottom: 15 },
-            },
-            plugins: {
-                '3d': {
-                    enabled: true,
-                    z: 0.1
-                }
+            error: function (error) {
+                console.log("Veri yüklenemedi", error);
             }
-        },
+        });
     });
+    </script>
 
-    // 3D Doughnut Chart for Day/Night
-    var myDoughnutChartDayNight = new Chart(doughnutChartDayNight, {
-        type: "doughnut",
-        data: {
-            datasets: [{
-                data: dayNightValue,
-                backgroundColor: ["#fdaf4b", "#1d7af3", "#f3545d"],
-            }],
-            labels: ["İlk Tur", "İkinci Tur", "Üçüncü Tur"],
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            legend: {
-                position: "bottom",
-            },
-            layout: {
-                padding: {
-                    left: 20,
-                    right: 20,
-                    top: 20,
-                    bottom: 20,
-                },
-            },
-            plugins: {
-                '3d': {
-                    enabled: true,
-                    z: 0.1
-                }
-            }
-        },
-    });
-
-    // 3D Pie Chart for Prices
-    var myPieChartPrice = new Chart(pieChartPrice, {
-        type: "pie",
-        data: {
-            datasets: [{
-                data: priceValue,
-                backgroundColor: ["#f3545d", "#fdaf4b", "#1d7af3"],
-            }],
-            labels: ["İlk Tur", "İkinci Tur", "Üçüncü Tur"],
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            legend: {
-                position: "bottom",
-            },
-            layout: {
-                padding: {
-                    left: 20,
-                    right: 20,
-                    top: 20,
-                    bottom: 20,
-                },
-            },
-            plugins: {
-                '3d': {
-                    enabled: true,
-                    z: 0.1
-                }
-            }
-        },
-    });
-</script>
-
-
+</body>
+</html>

@@ -137,9 +137,11 @@
     <Compile Include="Areas\Admin\Controllers\AdminLayoutController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\ChartController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CreditCardController.cs" />
     <Compile Include="Areas\Admin\Controllers\DestinationController.cs" />
     <Compile Include="Areas\Admin\Controllers\MessageController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProfileController.cs" />
+    <Compile Include="Areas\Admin\Controllers\StatisticController.cs" />
     <Compile Include="Context\TravelContext.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\DestinationController.cs" />
@@ -219,6 +221,7 @@
     <Content Include="kaiadmin-lite-1.2.0\assets\img\bg-404.jpeg" />
     <Content Include="kaiadmin-lite-1.2.0\assets\img\blogpost.jpg" />
     <Content Include="kaiadmin-lite-1.2.0\assets\img\chadengle.jpg" />
+    <Content Include="kaiadmin-lite-1.2.0\assets\img\chip.png" />
     <Content Include="kaiadmin-lite-1.2.0\assets\img\examples\example1-300x300.jpg" />
     <Content Include="kaiadmin-lite-1.2.0\assets\img\examples\example1.jpeg" />
     <Content Include="kaiadmin-lite-1.2.0\assets\img\examples\example10-300x300.jpg" />
@@ -547,6 +550,7 @@
     <Content Include="kaiadmin-lite-1.2.0\assets\img\undraw\undraw_Taken_if77.svg" />
     <Content Include="kaiadmin-lite-1.2.0\assets\img\undraw\undraw_update_uxn2.svg" />
     <Content Include="kaiadmin-lite-1.2.0\assets\img\undraw\undraw_upgrade_06a0.svg" />
+    <Content Include="kaiadmin-lite-1.2.0\assets\img\visa.png" />
     <Content Include="kaiadmin-lite-1.2.0\assets\img\visa.svg" />
     <Content Include="kaiadmin-lite-1.2.0\assets\js\core\bootstrap.min.js" />
     <Content Include="kaiadmin-lite-1.2.0\assets\js\core\jquery-3.7.1.min.js" />
@@ -703,6 +707,8 @@
     <Content Include="Areas\Admin\Views\AdminLayout\NavbarNotificationsForDestination.cshtml" />
     <Content Include="Areas\Admin\Views\AdminLayout\NavbarMessages.cshtml" />
     <Content Include="Areas\Admin\Views\Chart\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistic\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CreditCard\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

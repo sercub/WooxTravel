@@ -1,0 +1,263 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .card {
+            height: 100%;
+        }
+
+        .card-body {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .icon-big {
+            margin-right: 15px;
+        }
+
+        .numbers {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    </style>
+    @*<style>
+        .card {
+            height: 100%;
+            min-height: 150px; /* Minimum yükseklik ekleyerek boyutları daha tutarlı hale getirebiliriz */
+            border-radius: 10px; /* Kenarları yuvarlatma */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Hafif bir gölge */
+        }
+
+        .card-body {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            flex-direction: column; /* İçerikleri dikey merkezleme */
+            text-align: center;
+        }
+
+        .icon-big {
+            font-size: 3rem; /* Daha büyük ikonlar için */
+            margin-bottom: 5px; /* İkon ile metin arasındaki boşluk */
+        }
+
+        .numbers {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    </style>*@
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="page-inner">
+            <div class="row d-flex align-items-stretch">
+                <div class="col-sm-6 col-md-3">
+                    <div class="card card-stats card-primary">
+                        <div class="card-body">
+                            <div class="icon-big text-center">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="numbers">
+                                <p class="card-category">Toplam Destinasyon Sayısı</p>
+                                <h4 class="card-title">@ViewBag.TotalDestinations</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-3">
+                    <div class="card card-stats card-danger">
+                        <div class="card-body">
+                            <div class="icon-big text-center">
+                                <i class="fas fa-tags"></i>
+                            </div>
+                            <div class="numbers">
+                                <p class="card-category">Toplam Admin Sayısı</p>
+                                <h4 class="card-title">@ViewBag.TotalAdmins</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-3">
+                    <div class="card card-stats card-warning">
+                        <div class="card-body">
+                            <div class="icon-big text-center">
+                                <i class="fas fa-paper-plane"></i>
+                            </div>
+                            <div class="numbers">
+                                <p class="card-category">Gönderilen Mesaj Sayısı</p>
+                                <h4 class="card-title">@ViewBag.SentMessagesCount</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-6 col-md-3">
+                    <div class="card card-stats card-info">
+                        <div class="card-body">
+                            <div class="icon-big text-center">
+                                <i class="fas fa-inbox"></i>
+                            </div>
+                            <div class="numbers">
+                                <p class="card-category">Gelen Mesaj Sayısı</p>
+                                <h4 class="card-title">@ViewBag.ReceivedMessagesCount</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex align-items-stretch" style="margin-top:10px;">
+
+                <div class="col-sm-6 col-md-3">
+                    <div class="card card-stats card-danger">
+                        <div class="card-body">
+                            <div class="icon-big text-center">
+                                <i class="fas fa-user-check"></i>
+                            </div>
+                            <div class="numbers">
+                                <p class="card-category">Max Tur Kapasitesi</p>
+                                <h4 class="card-title">@ViewBag.MaxTourCapacity</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <div class="card card-stats card-info">
+                        <div class="card-body">
+                            <div class="icon-big text-center">
+                                <i class="fas fa-tags"></i>
+                            </div>
+                            <div class="numbers">
+                                <p class="card-category">Toplam Kategori Sayısı</p>
+                                <h4 class="card-title">@ViewBag.TotalCategories</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-6 col-md-3">
+                    <div class="card card-stats card-success">
+                        <div class="card-body">
+                            <div class="icon-big text-center">
+                                <i class="fa-regular fa-envelope"></i>
+                            </div>
+                            <div class="numbers">
+                                <p class="card-category">Teşekkür Konulu Mesaj Sayısı</p>
+                                <h4 class="card-title">@ViewBag.ThankYouMessagesCount</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <div class="card card-stats card-success">
+                        <div class="card-body">
+                            <div class="icon-big text-center">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                            <div class="numbers">
+                                <p class="card-category">En Pahalı Turumuz</p>
+                                <h4 class="card-title">@ViewBag.MostExpensiveTour</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex align-items-stretch" style="margin-top:10px; margin-bottom:130px;">
+                <div class="col-sm-6 col-md-3 d-flex justify-content-center">
+                    <div class="card card-stats card-round">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-icon">
+                                    <div class="icon-big text-center icon-secondary bubble-shadow-small">
+                                        <i class="fas fa-route"></i>
+                                    </div>
+                                </div>
+                                <div class="col col-stats ms-3 ms-sm-0">
+                                    <div class="numbers">
+                                        <p class="card-category">Yurtdışı Tur Sayısı</p>
+                                        <h4 class="card-title">@ViewBag.InternationalToursCount </h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-6 col-md-3 d-flex justify-content-center">
+                    <div class="card card-stats card-round">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-icon">
+                                    <div class="icon-big text-center icon-secondary bubble-shadow-small">
+                                        <i class="fas fa-comment"></i>
+                                    </div>
+                                </div>
+                                <div class="col col-stats ms-3 ms-sm-0">
+                                    <div class="numbers">
+                                        <p class="card-category">Toplam Mesaj Sayısı</p>
+                                        <h4 class="card-title">@ViewBag.TotalMessages</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-1 col-md-3 d-flex justify-content-center">
+                    <div class="card card-stats card-round">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-icon">
+                                    <div class="icon-big text-center icon-secondary bubble-shadow-small">
+                                        <i class="fa-regular fa-clock"></i>
+                                    </div>
+                                </div>
+                                <div class="col col-stats ms-3 ms-sm-0">
+                                    <div class="numbers">
+                                        <p class="card-category">En uzun süreli Tur Sayısı</p>
+                                        <h4 class="card-title">@ViewBag.DayNightCount</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-1 col-md-3 d-flex justify-content-center">
+                    <div class="card card-stats card-round">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-icon">
+                                    <div class="icon-big text-center icon-secondary bubble-shadow-small">
+                                        <i class="icon-close text-danger"></i>
+                                    </div>
+                                </div>
+                                <div class="col col-stats ms-3 ms-sm-0">
+                                    <div class="numbers">
+                                        <p class="card-category">'Şikayet' Konulu Mesaj Sayısı</p>
+                                        <h4 class="card-title">@ViewBag.DayNightCount</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+</body>
+
+
+</html>
