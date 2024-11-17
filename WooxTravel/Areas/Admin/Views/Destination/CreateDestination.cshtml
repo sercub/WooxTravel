@@ -4,6 +4,10 @@
     Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
 }
 
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <div class="container">
     <div class="page-inner">
         <div class="row">
@@ -36,7 +40,7 @@
                             <label>Açıklama</label>
                             @Html.TextAreaFor(s => s.Description, new { @class = "form-control" })
                             <br />
-                            <button class="btn btn-primary">Tur Rotasını Oluştur</button>
+                            <button class="btn btn-primary" id="btn1">Tur Rotasını Oluştur</button>
                         </form>
                     </div>
                 </div>
@@ -45,4 +49,24 @@
         </div>
     </div>
 </div>
+<script>
+    $('#btn1').click(function (event) {
+        event.preventDefault();
+
+        Swal.fire({
+            title: 'Tebrikler!',
+            text: 'Yeni Tur Başarıyla Oluşturuldu!',
+            icon: 'success',
+            confirmButtonText: 'Tamam'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $('form').submit();
+            }         
+        });
+    });
+</script>
+
+
+
+
 

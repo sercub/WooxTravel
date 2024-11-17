@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿ 
+@{ 
+
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -196,11 +201,11 @@
                 <div class="card-number-box">################</div>
                 <div class="flexbox">
                     <div class="box">
-                        <span>card holder</span>
+                        @*<span>card holder</span>*@
                         <div class="card-holder-name">full name</div>
                     </div>
                     <div class="box">
-                        <span>expires</span>
+                        @*<span>expires</span>*@
                         <div class="expiration">
                             <span class="exp-month">mm</span>
                             <span class="exp-year">yy</span>
@@ -222,16 +227,16 @@
 
         <form action="">
             <div class="inputBox">
-                <span>card number</span>
+                <span>Kart Numarası</span>
                 <input type="text" maxlength="16" class="card-number-input">
             </div>
             <div class="inputBox">
-                <span>card holder</span>
+                <span>Kart Sahibi</span>
                 <input type="text" class="card-holder-input">
             </div>
             <div class="flexbox">
                 <div class="inputBox">
-                    <span>expiration mm</span>
+                    <span>SKT MM</span>
                     <select name="" id="" class="month-input">
                         <option value="month" selected disabled>month</option>
                         <option value="01">01</option>
@@ -249,7 +254,7 @@
                     </select>
                 </div>
                 <div class="inputBox">
-                    <span>expiration yy</span>
+                    <span>SKT YY</span>
                     <select name="" id="" class="year-input">
                         <option value="year" selected disabled>year</option>
                         <option value="2021">2021</option>
@@ -265,11 +270,11 @@
                     </select>
                 </div>
                 <div class="inputBox">
-                    <span>cvv</span>
+                    <span>CVV</span>
                     <input type="text" maxlength="4" class="cvv-input">
                 </div>
             </div>
-            <input type="submit" value="submit" class="submit-btn">
+            <input type="submit" value="Ödeme Yap" class="submit-btn">
         </form>
 
     </div>

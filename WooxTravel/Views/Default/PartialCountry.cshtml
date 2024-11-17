@@ -6,10 +6,10 @@
 <div class="visit-country">
     <div class="container">
         <div class="row">
-            <div class="col-lg-5">
+            <div class="col-lg-12">
                 <div class="section-heading">
                     <h2>Popüler Tur ve Seyahat Rotalarımız</h2>
-                    <p>Dünyanın dört bir noktasına alanında uzman rehperler eşliğinde seyahate çıkmaya hazır mısınız? </p>
+                    <p>Dünyanın dört bir yanındaki göz alıcı destinasyonlarda, alanında uzman rehberlerimiz eşliğinde unutulmaz bir seyahate çıkmaya hazır mısınız? Her biri özenle hazırlanan tur programlarımızla, kültürel zenginlikleri keşfetme, doğanın güzelliklerini yakından görme ve yeni yerlerin büyüsüne kapılma fırsatını sunuyoruz. Kendinizi yepyeni hikayelere, dostluklara ve keşiflerle dolu bir maceraya hazırlayın.</p>
                 </div>
             </div>
         </div>
@@ -24,7 +24,7 @@
                                     <div class="row">
                                         <div class="col-lg-4 col-sm-5">
                                             <div class="image">
-                                                <img src="@item.ImageUrl" alt="">
+                                                <img src="@item.ImageUrl" alt="@item.Title" class="destination-image" />
                                             </div>
                                         </div>
                                         <div class="col-lg-8 col-sm-7">
@@ -32,29 +32,101 @@
                                                 <h4>@item.Country</h4>
                                                 <span>@item.City</span>
                                                 <div class="main-button">
-                                                    <a href="/Default/DestinationDetail/@item.DestinationId/">Tur Detaylarını Gör</a>
+                                                    <a href="/Default/DestinationDetail/@item.DestinationId">Tur Detaylarını Gör</a>
                                                 </div>
-                                                <p>@item.Description</p>
+
+                                                <p class="description" id="description-@item.DestinationId">
+                                                    @{
+                                                        var shortDescription = item.Description.Length > 500 ? item.Description.Substring(0, 500) + "..." : item.Description;
+                                                    }
+                                                    @shortDescription
+                                                    @if (item.Description.Length > 500)
+                                                    {
+                                                        <a href="javascript:void(0);" class="toggle-description" data-full-description="@item.Description" data-short-description="@shortDescription">Devamını Oku</a>
+                                                    }
+                                                </p>
+
                                                 <ul class="info">
-                                                    <li><i class="fa fa-user"></i> @item.DayNight Gün - @(item.DayNight-1) Gece</li>
-                                                    <li><i class="fa fa-globe"></i> @item.Price ₺</li>
-                                                    <li><i class="fa fa-home"></i> @item.Capacity Kişi</li>
+                                                    <li><i class="fa fa-calendar-days"></i> @item.DayNight Gün - @(item.DayNight - 1) Gece</li>
+                                                    <li><i class="fa fa-wallet"></i> @String.Format("{0:C0}", item.Price)₺</li>
+                                                    <li><i class="fa fa-users"></i> @item.Capacity Kişi</li>
                                                 </ul>
-                                                <div class="text-button">
-                                                    <a href="@Url.Action("DestinationDetail", "Destination", new {id=item.DestinationId})">Devamını Oku<i class="fa fa-arrow-right"></i></a>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         }
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <ul class="page-numbers">
+                                @if (ViewBag.CurrentPage > 1)
+                                {
+                                    <li>
+                                        <a href="javascript:void(0);" onclick="loadDestinationPage(@(ViewBag.CurrentPage - 1))">
+                                            <i class="fa fa-arrow-left"></i>
+                                        </a>
+                                    </li>
+                                }
+                                @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                                {
+                                    <li class="@(i == ViewBag.CurrentPage ? "active" : "")">
+                                        <a href="javascript:void(0);" onclick="loadDestinationPage(@i)">@i</a>
+                                    </li>
+                                }
+                                @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+                                {
+                                    <li>
+                                        <a href="javascript:void(0);" onclick="loadDestinationPage(@(ViewBag.CurrentPage + 1))">
+                                            <i class="fa fa-arrow-right"></i>
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
                         </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    function loadDestinationPage(page) {
+        $.ajax({
+            url: '@Url.Action("PartialCountry", "Default")',
+            data: { page: page },
+            success: function (data) {
+                $('.visit-country').html(data);
+                bindToggleDescriptionLinks();
+            }
+        });
+    }
+
+    function bindToggleDescriptionLinks() {
+        const toggleLinks = document.querySelectorAll('.toggle-description');
+        toggleLinks.forEach(function (link) {
+            link.addEventListener('click', function () {
+                const fullDescription = this.getAttribute('data-full-description');
+                const shortDescription = this.getAttribute('data-short-description');
+
+                if (this.innerText === "Devamını Oku") {
+                    this.parentElement.innerHTML = fullDescription + ' <a href="javascript:void(0);" class="toggle-description" data-short-description="' + shortDescription + '" data-full-description="' + fullDescription + '">Daha Az Göster</a>';
+                    bindToggleDescriptionLinks();
+                } else {
+                    this.parentElement.innerHTML = shortDescription + ' <a href="javascript:void(0);" class="toggle-description" data-short-description="' + shortDescription + '" data-full-description="' + fullDescription + '">Devamını Oku</a>';
+                    bindToggleDescriptionLinks();
+                }
+            });
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        bindToggleDescriptionLinks();
+    });
+</script>
 <div class="pagination-container">
     @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
 {
@@ -90,10 +162,11 @@
             background-color: #f0f0f0;
             color: #007bff;
         }
-        .image img{
-            width:100%;
-            height:250px;
-            object-fit:cover;
-            border-radius:8px;
-        }
+
+    .image img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
 </style>

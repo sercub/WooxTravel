@@ -27,16 +27,16 @@ namespace WooxTravel.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult CreateDestination(Destination destination)
         {
-            context.Destinations.Add(destination);
-            context.SaveChanges();
-            return RedirectToAction("DestinationList", "Destination", "Admin");//Area olduğu için area ismini de eklemem gerekiyor.
+                context.Destinations.Add(destination);
+                context.SaveChanges();
+                return RedirectToAction("DestinationList", "Destination", "Admin");
         }
         public ActionResult DeleteDestination(int id)
         {
             var value = context.Destinations.Find(id);
             context.Destinations.Remove(value);
             context.SaveChanges();
-            return RedirectToAction("DestinationList", "Destination", "Admin");
+            return RedirectToAction("DestinationList", "Destination", new {area = "Admin"});
         }
 
         [HttpGet]

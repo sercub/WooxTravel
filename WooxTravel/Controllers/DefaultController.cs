@@ -58,7 +58,7 @@ namespace WooxTravel.Controllers
                 new SliderImage{ Title="Gamla Stan", ImageUrl="https://cdn.getyourguide.com/img/tour/2b4d69dac5f0f3ed6d7ebb5bc7714a54796bfd102b5eb91a77ff60ddacd2a1d9.jpg/146.jpg"},
                 new SliderImage{ Title="Vasa Müzesi", ImageUrl="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/18/2e/17/99/smtm.jpg?w=1200&h=-1&s=1"},
                 new SliderImage{ Title="Djurgården Adası", ImageUrl="https://gezimanya.com/sites/default/files/styles/800x600_/public/gezilecek-yerler/2020-01/djurgarden-adasi.jpg"},
-                new SliderImage{ Title="Stockholm Kraliyet Sarayı", ImageUrl="https://cdn.ytur.net/fit-in/697x465/filters:quality(100)/filters:format(webp)/post/stockholm-sarayi-1-220403-215818-0968.jpg"}
+                new SliderImage{ Title="Stockholm Kraliyet Sarayı", ImageUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7ZP_ikypD5LFAlq4gAXryq-D644Diif2m8Q&s"}
             };
             }
             else if(value.City=="Münih")
