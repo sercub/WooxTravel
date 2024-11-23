@@ -7,16 +7,17 @@
 ##### Admin paneli, yöneticilerin sisteme eksiksiz ve güvenli bir şekilde erişim sağlaması için tasarlanmıştır. Giriş ekranı, yalnızca doğru kullanıcı adı ve şifre kombinasyonuyla erişim sağlanacak şekilde yapılandırılmıştır. Başarılı girişin ardından yöneticiler, sol menü üzerinden kategori, destinasyon ve rezervasyon yönetimi gibi temel CRUD işlemlerini kolayca gerçekleştirebilirler. Sağ üst köşede yer alan mesaj alanında, giriş yapan kullanıcıya atılan mesajlar görüntülenir. Admin paneli ayrıca, Chart.js kullanılarak oluşturulmuş 4 farklı grafik türüyle zenginleştirilmiş bir analiz sayfası sunar ve widget yapısıyla belirlenen 12 farklı istatistiği görselleştirir. Destinasyon ekleme işlemlerinde SweetAlert ile başarılı bir şekilde tamamlandığına dair bildirim yapılır. Mesajlar sayfasında bir mesaj açıldığında, detayları pop-up üzerinde görüntülenir. Ek olarak, rezervasyon işlemlerinde kullanılan kredi kartı ekranı, girilen kart numarası, son kullanma tarihi ve isim gibi bilgileri gerçek zamanlı olarak kart görseline yansıtarak kullanıcılara görsel bir doğrulama sağlar. Logout özelliği tamamlanmış olan bu panel, modern bir yönetim deneyimi sunarken kullanıcılar için kolaylık ve etkileşim sağlar.
 ### Kullanılan Teknolojiler ve Uygulamalar
 - 🌐 ASP.NET MVC
-- 💻 Entity Framework (Code First): Veritabanı yönetimi.
-- 💽 Microsoft SQL Server (MSSQL): Güçlü bir veritabanı altyapısı.
+- 💻 Entity Framework (Code First)
+- 💽 Microsoft SQL Server (MSSQL)
 - 🎨 HTML, CSS, Bootstrap
-- 📊 Chart.js: Grafiksel veri analizi için (Line, Bar, Pie, Doughnut).
+- 📊 Chart.js: Grafiksel veri analizi için (Line, Radar, Pie, Doughnut).
 - 🚨 SweetAlert
 - ✅ LINQ ve JavaScript
 - 📩 Modal & Pop-Up
 - 📈 Dinamik Veriler için Widget Yapısı
 - 💳 3D Kredi Kartı Ödeme Tasarımı
-- ⚙️ JavaScript (JS) ve LINQ ile Dinamik İşlemler
+- 🔑 Login/Logout
+- ⌨️ Admin Paneli Üzerinden Mesajlaşabilme
 # ✨ Veritabanı Diyagramı
 ![](https://github.com/selin-krsli/WooxTravel/blob/master/WooxTravel/Content/Proje2_Ekran_Goruntuleri/database_diagram.png)
 # ✨ Kullanıcı Arayüzü
