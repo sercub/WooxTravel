@@ -35,7 +35,7 @@ namespace WooxTravel.Controllers
         }
         public PartialViewResult PartialCountry(int page = 1)
         {
-            var values = context.Destinations.ToList().ToPagedList(page,2);
+            var values = context.Destinations.ToList().ToPagedList(page,3);
             return PartialView(values);
         }
         public ActionResult DestinationDetail(int id)

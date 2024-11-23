@@ -2,100 +2,116 @@
 @{
     Layout = null;
 }
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kullanıcı Kayıt</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <title>Kullanıcı Kaydı</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        body, html {
-            height: 100%;
+        * {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background: url('https://www.etstur.com/letsgo/wp-content/uploads/2015/06/lets-go-885x35617-1.jpg') no-repeat center center fixed;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url("https://w0.peakpx.com/wallpaper/400/1009/HD-wallpaper-travel-the-world-ultra-nature-mountains-travel-scenery-mountain-lake.jpg") no-repeat center center fixed;
             background-size: cover;
         }
 
-        .blur-background {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-            .blur-background::before {
-                content: "";
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background-color: rgba(0, 0, 0, 0.6); 
-                backdrop-filter: blur(10px); 
-                z-index: 1;
-            }
-
         .form-container {
             position: relative;
-            z-index: 2;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
             max-width: 400px;
-            margin: auto;
+            padding: 30px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px); /* Sadece bu alan blur */
+            background: rgba(255, 255, 255, 0.15); /* Daha transparan */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
         }
 
             .form-container h3 {
+                font-size: 1.8rem;
+                color: #fff;
                 margin-bottom: 20px;
-                text-align: center;
             }
 
-        label {
-            font-weight: bold;
-        }
-
-        .btn-primary {
-            background-color: #007bff;
-            border: none;
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-            .btn-primary:hover {
-                background-color: #0056b3;
+            .form-container label {
+                font-weight: bold;
+                color: #f8f9fa; /* Daha koyu beyaz */
+                display: block;
+                text-align: left;
+                margin: 10px 0 5px;
             }
+
+            .form-container input {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 15px;
+                border: none; /* Çizgileri kaldırdık */
+                border-bottom: 2px solid rgba(255, 255, 255, 0.5); /* Alt çizgi */
+                background: transparent; /* Tam şeffaf */
+                font-size: 1rem;
+                color: #fff; /* Yazı rengi */
+            }
+
+                .form-container input::placeholder {
+                    color: rgba(255, 255, 255, 0.7); /* Placeholder daha belirgin */
+                }
+
+                .form-container input:focus {
+                    outline: none;
+                    border-bottom: 2px solid rgba(255, 105, 180, 0.8); /* Pembe alt çizgi odakta */
+                }
+
+            .form-container button {
+                width: 100%;
+                padding: 10px;
+                font-size: 1.2rem;
+                font-weight: bold;
+                color: #fff;
+                background: rgba(255, 105, 180, 0.8); /* Pembe arka plan */
+                border: 2px solid rgba(255, 105, 180, 0.8);
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background 0.3s, color 0.3s;
+            }
+
+                .form-container button:hover {
+                    background: rgba(255, 105, 180, 1); /* Daha koyu pembe */
+                    color: #fff;
+                }
     </style>
 </head>
 <body>
-    <div class="blur-background">
-        <form method="post" class="form-container">
-            <div class="alert alert-primary text-center"><h3>Kullanıcı Kayıt Sayfası</h3></div>
-            <label>Adınız</label>
-            @Html.TextBoxFor(s => s.Name, new { @class = "form-control" })
-            <br />
-            <label>Soyadınız</label>
-            @Html.TextBoxFor(s => s.Surname, new { @class = "form-control" })
-            <br />
-            <label>Email Adresiniz</label>
-            @Html.TextBoxFor(s => s.Email, new { @class = "form-control" })
-            <br />
-            <label>Kullanıcı Adınız</label>
-            @Html.TextBoxFor(s => s.Username, new { @class = "form-control" })
-            <br />
-            <label>Şifreniz</label>
-            @Html.PasswordFor(s => s.Password, new { @class = "form-control" })
-            <br />
-            <button class="btn btn-primary">Kayıt Ol</button>
-        </form>
+    <div class="form-container">
+        <h3>Kullanıcı Kayıt Sayfası</h3>
+        @*<label for="name">Adınız</label>*@
+        <input type="text" id="name" name="Name" placeholder="Adınız" required>
+        @*<label for="surname">Soyadınız</label>*@
+        <input type="text" id="surname" name="Surname" placeholder="Soyadınız" required>
+        @*<label for="email">Email Adresiniz</label>*@
+        <input type="email" id="email" name="Email" placeholder="Email" required>
+        @*<label for="username">Kullanıcı Adınız</label>*@
+        <input type="text" id="username" name="Username" placeholder="Kullanıcı adınız" required>
+        @*<label for="password">Şifreniz</label>*@
+        <input type="password" id="password" name="Password" placeholder="Şifre" required>
+        <button type="submit">Kayıt Ol</button>
     </div>
 </body>
 </html>
+
+
+
+
+
+
+
